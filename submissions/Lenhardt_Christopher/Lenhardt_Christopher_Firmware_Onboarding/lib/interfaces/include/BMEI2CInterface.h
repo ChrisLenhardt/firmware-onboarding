@@ -10,11 +10,16 @@ public:
 
     BMEI2CInterface() = default;
 
-    // Code here!
+    bool init_sensor(uint8_t addr = BME280_ADDRESS, TwoWire *theWire = &Wire);
+
+    float get_sensor_temp();
+
 
 private:
     
-   // Code here!
+    Adafruit_BME280 _sensor;
+    float _last_recvd_temp{0.0F};
+    bool _initialized = false;
 
 };
 using BMEI2CInterfaceInstance = etl::singleton<BMEI2CInterface>;

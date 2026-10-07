@@ -4,17 +4,21 @@
 #include "BMEConstants.h"
 
 
-class BMESPInterface
+class BMESPIInterface
 {
 public:
 
-    BMESPInterface() = default;
+    BMESPIInterface() = default;
 
-    // Code here!
+    bool init_sensor(int8_t cspin, SPIClass *theSPI = &SPI);
+
+    float get_sensor_temp();
 
 private:
 
-   // Code here!
+    Adafruit_BME280 _sensor;
+    float _last_recvd_temp{0.0F};
+    bool _initialized = false;
 
 };
-using BMESPInterfaceInstance = etl::singleton<BMESPInterface>;
+using BMESPIInterfaceInstance = etl::singleton<BMESPIInterface>;
