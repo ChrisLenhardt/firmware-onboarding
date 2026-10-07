@@ -1,6 +1,6 @@
 #include "BMEI2CInterface.h"
 
-bool BMEI2CInterface::init_sensor(uint8_t addr = BME280_ADDRESS, TwoWire *theWire) {
+bool BMEI2CInterface::init_sensor(uint8_t addr, TwoWire *theWire) {
     _sensor = Adafruit_BME280();
     _initialized = _sensor.begin(addr, theWire);
     return _initialized;
