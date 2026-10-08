@@ -7,9 +7,10 @@ namespace BMEConstants
 
     constexpr uint8_t kLedPin = LED_BUILTIN;
     constexpr uint8_t kBmeSpiChipSelectPin = 10;
+    constexpr uint8_t kTempSensorAddr = 0x76;
 
-    constexpr float kMinTemperatureC = 0.0F;
-    constexpr float kMaxTemperatureC = 100.0F;
+    constexpr float kMinTemperatureC = 26.0F;
+    constexpr float kMaxTemperatureC = 28.0F;
     constexpr float kSlowBlinkPeriodMs = 1000.0F;
     constexpr float kFastBlinkPeriodMs = 100.0F;
 

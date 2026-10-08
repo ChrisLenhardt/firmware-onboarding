@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Wire.h>
 
 #include "BMEI2CInterface.h"
 #include "LEDController.h"
@@ -16,7 +17,8 @@ void setup()
     Serial.begin(BMEConstants::kMonitorSpeed);
 
     auto &sensor = BMEI2CInterfaceInstance::instance();
-    sensor_ready = sensor.init_sensor();
+    Wire.begin();
+    sensor_ready = sensor.init_sensor(BMEConstants::kTempSensorAddr, &Wire);
 
     auto &led = LedControllerInstance::instance();
     led.deactivate_led();
@@ -38,7 +40,9 @@ void loop()
     auto &led = LedControllerInstance::instance();
 
     const float temperature = sensor.get_sensor_temp();
+    Serial.println(temperature);
     led.update_led_period(temperature);
+    
 
     const unsigned long current_time = millis();
     const unsigned long led_period =
